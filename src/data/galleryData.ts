@@ -1,5 +1,11 @@
-import { generateAthleticArt } from './athleticVisuals.ts';
-import permanentAssets from './permanentWebsiteAssets.json';
+import gallery1 from '../assets/images/gallery_1.jpg';
+import gallery2 from '../assets/images/gallery_2.jpg';
+import gallery3 from '../assets/images/gallery_3.jpg';
+import gallery4 from '../assets/images/gallery_4.jpg';
+import gallery5 from '../assets/images/gallery_5.jpg';
+import gallery6 from '../assets/images/gallery_6.jpg';
+import gallery7 from '../assets/images/gallery_7.jpg';
+import gallery8 from '../assets/images/gallery_8.jpg';
 
 export interface GalleryItem {
   id: string;
@@ -10,54 +16,46 @@ export interface GalleryItem {
 export const defaultGalleryImages: GalleryItem[] = [
   {
     id: 'gal-1',
-    photoUrl: '/uploads/IMG_3321_1793002828943.jpg',
+    photoUrl: gallery1,
     altText: 'RK FITNESS Heavy Strength and Conditioning Center',
   },
   {
     id: 'gal-2',
-    photoUrl: '/uploads/IMG_3302_1793002830782.jpg',
+    photoUrl: gallery2,
     altText: 'Olympic Barbell and Power Rack Training Platform at RK FITNESS',
   },
   {
     id: 'gal-3',
-    photoUrl: '/uploads/IMG_3301_1793002832176.jpg',
+    photoUrl: gallery3,
     altText: 'Heavy Dumbbells and Free Weight Station at RK FITNESS',
   },
   {
     id: 'gal-4',
-    photoUrl: '/uploads/IMG_3299_1793002833362.jpg',
+    photoUrl: gallery4,
     altText: 'Functional Turf and Heavy Sled Conditioning Track at RK FITNESS',
   },
   {
     id: 'gal-5',
-    photoUrl: '/uploads/IMG_3294_1793002834039.jpg',
+    photoUrl: gallery5,
     altText: 'Cable Cross and Precision Hypertrophy Machines at RK FITNESS',
   },
   {
     id: 'gal-6',
-    photoUrl: '/uploads/IMG_3293_1793002835226.jpg',
+    photoUrl: gallery6,
     altText: 'Competition Powerlifting and Deadlift Zone at RK FITNESS',
   },
   {
     id: 'gal-7',
-    photoUrl: '/uploads/IMG_3291_1793002836393.jpg',
+    photoUrl: gallery7,
     altText: 'High-Performance Cardio and Rowing Stations at RK FITNESS',
   },
   {
     id: 'gal-8',
-    photoUrl: '/uploads/IMG_3292_1793002837902.jpg',
+    photoUrl: gallery8,
     altText: 'Private Coaching and Posture Assessment Bay at RK FITNESS',
   },
 ];
 
 export function getHydratedGallery(): GalleryItem[] {
-  const customGallery = (permanentAssets as { gallery?: string[] }).gallery || [];
-  if (customGallery.length > 0) {
-    return customGallery.map((url, index) => ({
-      id: `custom-gal-${index + 1}`,
-      photoUrl: url,
-      altText: `RK FITNESS Gym Facility and Athlete Transformation photo ${index + 1}`,
-    }));
-  }
   return defaultGalleryImages;
 }

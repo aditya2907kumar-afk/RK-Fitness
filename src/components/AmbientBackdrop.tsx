@@ -1,14 +1,12 @@
 import React from 'react';
+import gymWallpaper from '../assets/images/wallpaper_gym.jpg';
 
 interface AmbientBackdropProps {
-  wallpaperUrl: string;
+  wallpaperUrl?: string;
 }
 
 export const AmbientBackdrop: React.FC<AmbientBackdropProps> = ({ wallpaperUrl }) => {
-  // Normalize path if starts with /public so Vite can serve from public directory
-  const resolvedUrl = wallpaperUrl.startsWith('/public/')
-    ? wallpaperUrl.replace(/^\/public/, '')
-    : wallpaperUrl;
+  const currentWallpaper = wallpaperUrl || gymWallpaper;
 
   return (
     <div
@@ -22,7 +20,7 @@ export const AmbientBackdrop: React.FC<AmbientBackdropProps> = ({ wallpaperUrl }
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-700 ease-out gpu-layer"
         style={{
-          backgroundImage: `url("${resolvedUrl}"), url("${wallpaperUrl}")`,
+          backgroundImage: `url("${currentWallpaper}")`,
           opacity: 1, // 100% full visibility — dark effect completely removed
           filter: 'brightness(1.10) contrast(1.04)', // +10% enhanced brightness with crisp definition
         }}

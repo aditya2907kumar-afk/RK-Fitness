@@ -1,13 +1,13 @@
 import React from 'react';
 import { Phone, MessageSquare, Instagram } from 'lucide-react';
-import { generateCoachPortraitArt } from '../data/coachVisual.ts';
+import coachPortrait from '../assets/images/coach_kushal.png';
 
 interface SpecialistsShowcaseProps {
   coachPhoto?: string;
   onOpenConsultation?: () => void;
 }
 
-export const PERMANENT_COACH_PHOTO = '/uploads/C2C56DFA-CDFD-4964-9A3C-66269D9E1FC1_1793002793641.png';
+export const PERMANENT_COACH_PHOTO = coachPortrait;
 
 export const SpecialistsShowcase: React.FC<SpecialistsShowcaseProps> = ({
   coachPhoto,

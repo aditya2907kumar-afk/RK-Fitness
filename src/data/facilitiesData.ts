@@ -1,5 +1,14 @@
-import { generateFacilityArt } from './facilityVisuals.ts';
-import permanentAssets from './permanentWebsiteAssets.json';
+import facilityMaleChanging from '../assets/images/facility_male_changing.jpg';
+import facilityFemaleChanging from '../assets/images/facility_female_changing.jpg';
+import facilityAc from '../assets/images/facility_ac.jpg';
+import facilityFingerprint from '../assets/images/facility_fingerprint.webp';
+import facilityBoxing from '../assets/images/facility_boxing.jpg';
+import facilityHiit from '../assets/images/facility_hiit.jpg';
+import facilityEquipment from '../assets/images/facility_equipment.jpg';
+import facilityHygienic from '../assets/images/facility_hygienic.jpg';
+import facilityCardio from '../assets/images/facility_cardio.jpg';
+import facilitySunlight from '../assets/images/facility_sunlight.jpg';
+import facilityParking from '../assets/images/facility_parking.jpg';
 
 export interface FacilityItem {
   id: string;
@@ -90,42 +99,23 @@ export const rawFacilitiesData: Omit<FacilityItem, 'photoUrl'>[] = [
   },
 ];
 
-const iconTypeMap: Record<string, string> = {
-  male_changing_room: 'lockers_male',
-  female_changing_room: 'lockers_female',
-  air_conditioned: 'ac',
-  fingerprint_entry: 'biometric',
-  boxing_gears: 'boxing',
-  hiit_zone: 'gym',
-  world_class_equipment: 'gym',
-  hygienic_machines: 'gym',
-  cardio_zone: 'gym',
-  sunlight_environment: 'sunlight',
-  free_parking: 'parking',
-};
-
 export const permanentFacilityPhotos: Record<string, string> = {
-  male_changing_room: '/uploads/IMG_3295_1793002858642.jpg',
-  female_changing_room: '/uploads/IMG_3296_1793002866347.jpg',
-  air_conditioned: '/uploads/IMG_3300_1793002873512.jpg',
-  fingerprint_entry: '/uploads/IMG_3323_1793002879663.webp',
-  boxing_gears: '/uploads/IMG_3298_1793002888775.jpg',
-  hiit_zone: '/uploads/IMG_3288_1793002896827.jpg',
-  world_class_equipment: '/uploads/IMG_3290_1793002904835.jpg',
-  hygienic_machines: '/uploads/IMG_3322_1793002913074.jpg',
-  cardio_zone: '/uploads/IMG_3289_1793002920859.jpg',
-  sunlight_environment: '/uploads/IMG_3299_1793002930201.jpg',
-  free_parking: '/uploads/IMG_3324_1793002936078.jpg',
+  male_changing_room: facilityMaleChanging,
+  female_changing_room: facilityFemaleChanging,
+  air_conditioned: facilityAc,
+  fingerprint_entry: facilityFingerprint,
+  boxing_gears: facilityBoxing,
+  hiit_zone: facilityHiit,
+  world_class_equipment: facilityEquipment,
+  hygienic_machines: facilityHygienic,
+  cardio_zone: facilityCardio,
+  sunlight_environment: facilitySunlight,
+  free_parking: facilityParking,
 };
 
 export function getHydratedFacilities(): FacilityItem[] {
-  const customFacilities = (permanentAssets as { facilities?: Record<string, string> }).facilities || {};
-
-  return rawFacilitiesData.map((fac) => {
-    const photo = customFacilities[fac.key] || permanentFacilityPhotos[fac.key] || generateFacilityArt(fac.name, fac.tagline, iconTypeMap[fac.key] || 'gym');
-    return {
-      ...fac,
-      photoUrl: photo,
-    };
-  });
+  return rawFacilitiesData.map((fac) => ({
+    ...fac,
+    photoUrl: permanentFacilityPhotos[fac.key],
+  }));
 }
