@@ -4,14 +4,10 @@ import { FacilityItem } from '../data/facilitiesData.ts';
 
 interface FacilitiesShowcaseProps {
   facilities: FacilityItem[];
-  isLocked: boolean;
-  onUpdateFacilityPhoto?: (facilityKey: string, url: string) => void;
 }
 
 export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
   facilities,
-  isLocked,
-  onUpdateFacilityPhoto,
 }) => {
   const [lightboxImage, setLightboxImage] = useState<{ url: string; title: string } | null>(null);
 
@@ -131,35 +127,6 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
     }
   };
 
-  const handleUploadClick = (facilityKey: string) => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'image/*';
-    input.onchange = async (e) => {
-      const file = (e.target as HTMLInputElement).files?.[0];
-      if (file && onUpdateFacilityPhoto) {
-        const reader = new FileReader();
-        reader.onload = async () => {
-          try {
-            const res = await fetch('/api/upload-photo', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ filename: file.name, dataUrl: reader.result }),
-            });
-            if (res.ok) {
-              const data = await res.json();
-              onUpdateFacilityPhoto(facilityKey, data.url);
-            }
-          } catch (err) {
-            console.error('Facility photo upload failed:', err);
-          }
-        };
-        reader.readAsDataURL(file);
-      }
-    };
-    input.click();
-  };
-
   return (
     <section id="facilities" className="relative py-20 overflow-hidden text-center">
       {/* Header: High-Contrast Floating Typography, Center-Aligned */}
@@ -237,19 +204,6 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
                   <Maximize2 className="w-5 h-5" />
                 </div>
               </div>
-
-              {/* Optional Unlocked Studio Edit Trigger */}
-              {!isLocked && onUpdateFacilityPhoto && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleUploadClick(facility.key);
-                  }}
-                  className="absolute top-3.5 right-3.5 z-20 px-2.5 py-1 text-[10px] font-semibold bg-[#E11D48] text-white rounded-lg shadow hover:bg-[#BE123C] transition-colors border border-white/20"
-                >
-                  Change Photo
-                </button>
-              )}
             </div>
           ))}
         </div>

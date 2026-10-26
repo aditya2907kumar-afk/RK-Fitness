@@ -1,11 +1,9 @@
 import React from 'react';
-import { Phone, MessageSquare, Instagram, Upload } from 'lucide-react';
+import { Phone, MessageSquare, Instagram } from 'lucide-react';
 import { generateCoachPortraitArt } from '../data/coachVisual.ts';
 
 interface SpecialistsShowcaseProps {
   coachPhoto?: string;
-  onUpdateCoachPhoto?: (url: string) => void;
-  isLocked?: boolean;
   onOpenConsultation?: () => void;
 }
 
@@ -13,33 +11,8 @@ export const PERMANENT_COACH_PHOTO = '/uploads/C2C56DFA-CDFD-4964-9A3C-66269D9E1
 
 export const SpecialistsShowcase: React.FC<SpecialistsShowcaseProps> = ({
   coachPhoto,
-  onUpdateCoachPhoto,
-  isLocked = false,
 }) => {
   const currentPhoto = (coachPhoto && coachPhoto.trim() !== '') ? coachPhoto : PERMANENT_COACH_PHOTO;
-
-  const handleLocalUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file || !onUpdateCoachPhoto) return;
-    try {
-      const reader = new FileReader();
-      reader.onload = async () => {
-        const dataUrl = reader.result as string;
-        const res = await fetch('/api/upload-photo', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ filename: file.name, dataUrl }),
-        });
-        if (res.ok) {
-          const data = await res.json();
-          onUpdateCoachPhoto(data.url);
-        }
-      };
-      reader.readAsDataURL(file);
-    } catch (err) {
-      console.error('Failed to upload coach photo:', err);
-    }
-  };
 
   return (
     <section id="specialist" className="relative py-16 sm:py-24 px-3 sm:px-6 lg:px-8 text-center">
@@ -56,20 +29,6 @@ export const SpecialistsShowcase: React.FC<SpecialistsShowcaseProps> = ({
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
               />
             </div>
-            {!isLocked && onUpdateCoachPhoto && (
-              <label
-                title="Change Coach Photo"
-                className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-[#E11D48] hover:bg-[#BE123C] text-white flex items-center justify-center cursor-pointer shadow-lg border-2 border-[#091726] transition-all hover:scale-110 active:scale-95 z-10"
-              >
-                <Upload className="w-3.5 h-3.5" />
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleLocalUpload}
-                  className="hidden"
-                />
-              </label>
-            )}
           </div>
 
           {/* 1) Coach Name */}

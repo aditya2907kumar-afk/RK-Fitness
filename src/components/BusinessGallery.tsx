@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
-import { X, Maximize2, Upload } from 'lucide-react';
+import { X, Maximize2 } from 'lucide-react';
 import { GalleryItem } from '../data/galleryData.ts';
 
 interface BusinessGalleryProps {
   galleryItems: GalleryItem[];
-  isLocked: boolean;
-  onBatchUpload?: (files: FileList) => void;
 }
 
 export const BusinessGallery: React.FC<BusinessGalleryProps> = ({
   galleryItems,
-  isLocked,
-  onBatchUpload,
 }) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
@@ -28,23 +24,6 @@ export const BusinessGallery: React.FC<BusinessGalleryProps> = ({
         <h2 className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-cormorant font-normal tracking-[0.22em] sm:tracking-[0.32em] pl-[0.22em] sm:pl-[0.32em] text-white uppercase luxury-text-shadow leading-none text-center">
           ATMOS
         </h2>
-        {!isLocked && onBatchUpload && (
-          <label className="mt-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#E11D48] hover:bg-[#BE123C] text-white text-[11px] font-semibold cursor-pointer shadow-lg transition-transform active:scale-95">
-            <Upload className="w-3.5 h-3.5" />
-            <span>Upload Atmosphere Photos</span>
-            <input
-              type="file"
-              multiple
-              accept="image/*"
-              onChange={(e) => {
-                if (e.target.files && e.target.files.length > 0) {
-                  onBatchUpload(e.target.files);
-                }
-              }}
-              className="hidden"
-            />
-          </label>
-        )}
       </div>
 
       {/* Twin-Track Continuous Visual Tape */}
