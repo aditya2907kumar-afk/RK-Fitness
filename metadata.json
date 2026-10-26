@@ -1,0 +1,6 @@
+{
+  "name": "RK FITNESS | Luxury Strength & Conditioning Club",
+  "description": "Elite strength, powerlifting, bodybuilding, and athletic conditioning studio in Jakariyapur, Pahari, Patna. Led by Head Coach Rohit Kumar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

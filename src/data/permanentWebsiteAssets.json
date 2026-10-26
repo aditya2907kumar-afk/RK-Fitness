@@ -1,0 +1,31 @@
+{
+  "isLocked": true,
+  "websiteBackground": "/uploads/IMG_3320_1793002801367.jpg",
+  "specialistsBackground": "/uploads/IMG_3320_1793002801367.jpg",
+  "coachPhoto": "/uploads/C2C56DFA-CDFD-4964-9A3C-66269D9E1FC1_1793002793641.png",
+  "services": {},
+  "gallery": [
+    "/uploads/IMG_3321_1793002828943.jpg",
+    "/uploads/IMG_3302_1793002830782.jpg",
+    "/uploads/IMG_3301_1793002832176.jpg",
+    "/uploads/IMG_3299_1793002833362.jpg",
+    "/uploads/IMG_3294_1793002834039.jpg",
+    "/uploads/IMG_3293_1793002835226.jpg",
+    "/uploads/IMG_3291_1793002836393.jpg",
+    "/uploads/IMG_3292_1793002837902.jpg"
+  ],
+  "facilities": {
+    "male_changing_room": "/uploads/IMG_3295_1793002858642.jpg",
+    "female_changing_room": "/uploads/IMG_3296_1793002866347.jpg",
+    "air_conditioned": "/uploads/IMG_3300_1793002873512.jpg",
+    "fingerprint_entry": "/uploads/IMG_3323_1793002879663.webp",
+    "boxing_gears": "/uploads/IMG_3298_1793002888775.jpg",
+    "hiit_zone": "/uploads/IMG_3288_1793002896827.jpg",
+    "world_class_equipment": "/uploads/IMG_3290_1793002904835.jpg",
+    "hygienic_machines": "/uploads/IMG_3322_1793002913074.jpg",
+    "cardio_zone": "/uploads/IMG_3289_1793002920859.jpg",
+    "sunlight_environment": "/uploads/IMG_3299_1793002930201.jpg",
+    "free_parking": "/uploads/IMG_3324_1793002936078.jpg"
+  },
+  "lockedAt": "2026-10-26T08:22:20.000Z"
+}

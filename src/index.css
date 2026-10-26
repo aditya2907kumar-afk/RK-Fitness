@@ -1,0 +1,175 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+    --font-montserrat: 'Montserrat', system-ui, -apple-system, sans-serif;
+    --font-cinzel: 'Montserrat', system-ui, -apple-system, sans-serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --ease-butter: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-soft: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Lenis Buttery Smooth Inertial Scroll Styles */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #050B14;
+    color: #F8FAFC;
+    overflow-x: hidden;
+    text-align: center;
+  }
+
+  h1, h2, h3, h4, h5, .font-serif {
+    font-family: var(--font-cormorant);
+  }
+
+  .font-cormorant {
+    font-family: var(--font-cormorant);
+  }
+
+  .font-montserrat {
+    font-family: var(--font-montserrat);
+  }
+
+  .font-cinzel {
+    font-family: var(--font-montserrat);
+  }
+
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+}
+
+/* Custom Text Shadow Utility for 100% High-Contrast Legibility on Bright Wallpaper */
+.luxury-text-shadow {
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.95),
+    0 4px 16px rgba(0, 0, 0, 0.9),
+    0 0 2px #000,
+    0 0 10px rgba(0, 0, 0, 0.85);
+}
+
+.text-halo {
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.98),
+    0 2px 8px rgba(0, 0, 0, 0.9),
+    0 0 2px #000;
+}
+
+.luxury-glow-red {
+  box-shadow: 0 0 35px -5px rgba(225, 29, 72, 0.35);
+}
+
+.luxury-glow-gold {
+  box-shadow: 0 0 30px -5px rgba(252, 211, 77, 0.3);
+}
+
+/* Hardware Acceleration & Buttery Smooth Curves */
+.gpu-layer {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+.butter-transition {
+  transition: all 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.butter-scale {
+  transition: transform 450ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 450ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Horizontal tape edge fade masks for seamless endless tape aesthetics */
+.marquee-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+/* Custom Ultra-Smooth 60/120fps Marquee Keyframes */
+@keyframes marqueeRTL {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-continuous {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  animation: marqueeRTL 55s linear infinite;
+}
+
+.animate-marquee-reviews {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  animation: marqueeRTL 85s linear infinite;
+}
+
+.marquee-container:hover .animate-marquee-continuous,
+.marquee-container:hover .animate-marquee-reviews {
+  animation-play-state: paused;
+}
+
+/* Sleek Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050B14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+  transition: background 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E11D48;
+}
+
+/* Prevent unwanted selection on dragging */
+.no-select {
+  -webkit-user-select: none;
+  user-select: none;
+}
